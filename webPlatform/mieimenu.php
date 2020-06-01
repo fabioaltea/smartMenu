@@ -7,18 +7,28 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
 
-    <title>Accesso, Smart Menù</title>
+    <title>Smart Menù</title>
   </head>
   <body>
     
-    <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="./homepage.php">
         <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
         Smart Menù
     </a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#">Home </a>
+      <a class="nav-item nav-link" href="#">Features</a>
+      <a class="nav-item nav-link" href="#">Pricing</a>
+      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+    </div>
+   </div>
     </nav>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

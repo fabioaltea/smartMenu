@@ -7,26 +7,35 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link href="signin.css" rel="stylesheet">
 
-    <title>Smart Menù</title>
+    <title>Accesso, Smart Menù</title>
   </head>
   <body>
     
-  <nav class="navbar navbar-light bg-light">
+    <!-- Image and text -->
+    <nav class="navbar navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="./homepage.php">
         <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
         Smart Menù
     </a>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#">Home </a>
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
-    </div>
-   </div>
     </nav>
+
+    <form class="form-signin">
+  <img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Accesso all'area riservata</h1>
+  <label for="inputEmail" class="sr-only">Email</label>
+  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Ricorda Accesso
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Accedi</button>
+  
+</form>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
