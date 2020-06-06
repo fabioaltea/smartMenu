@@ -84,19 +84,27 @@ img{
     color: red;
 }
 
-.kitchenTable0{
+.kitchenTable{
+    width:10%;
     margin:10px;
     height: 100px;
-    border:1px solid grey;
+    border:1px solid lightgray;
+    border-radius: 2%;
+    padding: 0;
+    text-align: center;
+}
+
+.kitchenTable0{
+    height: 200px;
+    border:none;
     border-radius: 2%;
     background-color: white;
     color: black;
 }
 
 .kitchenTable1{
-    margin:10px;
-    height: 100px;
-    border:1px solid grey;
+   height: 200px;
+    border:none;
     border-radius: 2%;
     background-color: red;
     color: black;
@@ -104,9 +112,8 @@ img{
 }
 
 .kitchenTable2{
-    margin:10px;
-    height: 100px;
-    border:1px solid grey;
+    height: 200px;
+    border:none;
     border-radius: 2%;
     background-color: yellow;
     color: black;
@@ -114,9 +121,8 @@ img{
 }
 
 .kitchenTable3{
-    margin:10px;
-    height: 100px;
-    border:1px solid grey;
+    height: 200px;
+    border:none;
     border-radius: 2%;
     background-color: greenyellow;
     color: black;
@@ -124,7 +130,7 @@ img{
 }
 
 .kitchenTable:hover{
-    box-shadow:5px 5px 10px whitesmoke;
+    box-shadow:5px 5px 10px lightgray;
     
 }
 
@@ -140,4 +146,30 @@ img{
     width: 80%;
     margin: 20px;
     
+}
+
+.midDiv{
+    width:45%;
+    height: 1000px;
+    float: left;
+    border: 1px solid lightgray;
+    padding: 20px;
+    margin: 20px;
+}
+
+.colOrdine{
+    margin:10px;
+    padding:3px;
+}
+
+.dashDiv{
+    height:40px;
+}
+
+.picPiatto
+{
+    width: 250px;
+    height: 250px;
+    margin: 30px;
+    background-color: grey;
 }
