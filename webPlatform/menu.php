@@ -1,3 +1,29 @@
+<?php 
+
+session_start();
+  
+if ($_SESSION['login'] != "ok") {
+  header("location: ./login.php");
+}
+
+  $connL=mysqli_connect('127.0.0.1','root','','ristotemplate');
+
+  $connR=mysqli_connect('127.0.0.1','root','','ristotemplate');
+
+  if($_GET)
+  {
+    $menuname=null;
+    $menudesc=null;
+    $menu=mysqli_query($connL, "select * from menus where idMenu=".$_GET['id'].";");
+    while($mymenu=mysqli_fetch_array($menu))
+    {
+      $menuname=$mymenu[1];
+      $menudesc=$mymenu[2];
+    }
+
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +34,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Blank</title>
+<?php 
+if($_GET)
+{
+  echo "<title> - Modfica Menu</title>";
+}
+else
+{
+  echo "<title> - Nuovo Menu</title>";
+}
+?>
+  
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +52,7 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
+  <link href="./../style.css" rel="stylesheet">
 
 </head>
 
@@ -29,8 +64,8 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
-       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./dashboard.php">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./dashboard.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
@@ -95,7 +130,6 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
@@ -130,38 +164,108 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"></h1>
+            <h1 class="h3 mb-0 text-gray-800"><?php  if($_GET){echo "Modifica Menu";}else{echo "Nuovo Menu";}   ?></h1>
           </div>
-
-  
 
           
 
+          
+          <form method="post" <?php if($_GET){echo "action=\"./editMenu.php\"";}else{echo "action=\"./addMenu.php\"";}?>>
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
+            <div class="card shadow mb-4" style=" width:1120px;">
+                
+                  <div class="card-body">
+                      <div class="col-lg-4 mb-4" style="float:left;">
+                        <div class="picPiatto">
+                        <center><input type="file"></center>
+                        </div>
+                      </div>
 
-              
-              
-            </div>
-            <div class="col-lg-6 mb-4">
+                      <div class="col-lg-8 mb-4"  style="float:right;">
+            
+                        
+                          <div class="form-group">
+                            <label for="nomeMenu">Nome Menu</label>
+                            <input type="text" class="form-control" id="nomeMenu" name="nomeMenu" placeholder="Inserisci Nome" <?php if($_GET){echo "value='".$menuname."'";}?>>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="descMenu">Descrizione Menu</label>
+                            <textarea class="form-control" id="descMenu" name="descMenu" <?php if($_GET){echo "value='".$menudesc."'";}?>rows="3"></textarea>
+                          </div>
+                          
+                          <button type="submit" style="float:right;"class="btn btn-primary">Salva</button>
 
-              
+                       
+
+                      </div>
+                  </div>
             </div>
+          
           </div>
 
 
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
+            <div class="card shadow mb-4" style="width:1120px;">
+            <div class="card-header py-3" >
+            
+          
+            
+                   <h6 class="m-0 font-weight-bold text-primary">Seleziona Piatti</h6>
+                </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Seleziona</th>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                            <th>Categoria</th>
+                            <th>IMG</th>
+                            <th>Prezzo</th>
+                            <th>Cucina</th>
+                            
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                          
+                          <?php 
+                            $piatti=mysqli_query($connL, "SELECT * FROM piatti;" );
+                            while($piatto=mysqli_fetch_array($piatti))
+                            {
+                              echo "<tr>
+                                    <th>
+                                    <div class=\"form-check\">
+                                      <input class=\"form-check-input\" type=\"checkbox\" name=\"check".$piatto[0]."\" value=\"".$piatto[0]."\" id=\"defaultCheck1\">
+                                   
+                                    </div>
+                                    </th>
+                                    <th>".$piatto[1]."</a></th>
+                                    <th>".$piatto[2]."</a></th>
+                                    <th>".$piatto[3]."</a></th>
+                                    <th>".$piatto[4]."</a></th>
+                                    <th>".$piatto[5]."</a></th>
+                                    <th>".$piatto[6]."</a></th>
+                                    </tr>";
+                            }
+                          ?>
+                        </tbody>
+                    </table>
+                          </div>
+                          </div>
               
               
             </div>
           </div>
+
+          </form>
+
 
 
 
@@ -171,15 +275,7 @@
       </div>
       <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SmartMenu 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+     
 
     </div>
     <!-- End of Content Wrapper -->

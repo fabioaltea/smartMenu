@@ -1,4 +1,12 @@
 <?php 
+  
+  session_start();
+  
+  if ($_SESSION['login'] != "ok") {
+    header("location: ./login.php");
+  }
+  
+
   $connL=mysqli_connect('127.0.0.1','root','','ristotemplate');
 
   $connR=mysqli_connect('127.0.0.1','root','','ristotemplate');
@@ -35,12 +43,12 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+       <!-- Sidebar - Brand -->
+       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./dashboard.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
-        <div class="sidebar-brand-text mx-3">Smart Menù<sup></sup></div>
+        <div class="sidebar-brand-text mx-3">Smart Menu<sup></sup></div>
       </a>
 
       <!-- Divider -->
@@ -48,40 +56,73 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+        <a class="nav-link" href="./dashboard.php">
+         
+        <center><span>Dashboard</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="cucine.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Cucine</span></a>
+        <a class="nav-link" href="./creaCucina.php">
+          
+        <center><span>Cucine</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="piatti.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Piatti</span></a>
+        <a class="nav-link" href="./mieiPiatti.php">
+          
+        <center><span>Piatti</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="menu.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Menù</span></a>
+        <a class="nav-link" href="./mieiMenu.php">
+         
+        <center><span>Menù</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="./tavoli.php">
+         
+        <center><span>Tavoli</span></center></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="./categorie.php">
+       
+        <center><span>Categorie</span></center></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Impostazioni</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Modifica Profilo</a>
+            <a class="collapse-item" href="logout.php">Logout</a>
+          </div>
+        </div>
+      </li>
 
      
 
@@ -117,20 +158,32 @@
             <!-- Content Column -->
             <div>
                 <div class="card shadow mb-4" style="width:1120px;">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Nuova Cucina</h6>
-                  </div>
+
+                <!-- Card Header - Accordion -->
+                <a href="#collapseNewKitchen" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseNewKitchen" style="width:1100px;">
+                  <h6 class="m-0 font-weight-bold text-primary">Nuova Cucina</h6>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse " id="collapseNewKitchen">
+
+
+                 
                   <div class="card-body">
                     <form name="addCucina" method="POST" action="./addCucina.php">
                       <div class="form-group">
                         <label for="kitchenName">Nome Cucina</label>
                         <input type="text" class="form-control" id="kitchenName" name="kitchenName"  placeholder="Inserisci Nome Cucina">
-                        <button type="submit" class="btn btn-primary" style="margin-top:10px;">Aggiungi</button>
+                        
                       </div>
+                      <div class="form-group">
+                        <label for="kitchenDesc">Descrizione Cucina</label>
+                        <textarea class="form-control" rows="3" id="kitchenDesc" name="kitchenDesc" placeholder="Inserisci descrizione Cucina"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary" style="margin-top:10px;">Aggiungi</button>
                     </form>
                   </div>
                 </div>
-            </div>
+            </div></div>
           </div>
 
           <div class="row">
@@ -146,9 +199,9 @@
                       <table class="table table-bordered" id="dataTable" style="width:1065px;" cellspacing="0">
                         <thead>
                           <tr>
-                            <th style="width:500px;">id</th>
-                            <th style="width:500px;">Nome</th>
-                            <th style="width:500px;">Descrizione</th>
+                            
+                            <th style="width:300px;">Nome</th>
+                            <th style="width:1100px;">Descrizione</th>
                             
                           </tr>
                         </thead>
@@ -158,9 +211,9 @@
                             $cucine=mysqli_query($connL, "select * from cucine");
                             while($cucina=mysqli_fetch_array($cucine))
                             {
-                              echo "<tr><th>none</th>
+                              echo "<tr>
                                     <th><a href='./mieiPiatti.php?cucina=".$cucina[0]."'>".$cucina[0]."</a></th>
-                                    <th>none</th></tr>";
+                                    <th>".$cucina[1]."</th></tr>";
                             }
                           ?>
                         </tbody>

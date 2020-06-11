@@ -1,3 +1,17 @@
+<?php 
+
+session_start();
+  
+if ($_SESSION['login'] != "ok") {
+  header("location: ./login.php");
+}
+
+  $connL=mysqli_connect('127.0.0.1','root','','ristotemplate');
+
+  $connR=mysqli_connect('127.0.0.1','root','','ristotemplate');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +23,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Blank</title>
+  <title> - Categorie</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -96,6 +110,8 @@
       <hr class="sidebar-divider">
 
 
+
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
@@ -108,6 +124,7 @@
           </div>
         </div>
       </li>
+
 
      
 
@@ -130,36 +147,77 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"></h1>
+            <h1 class="h3 mb-0 text-gray-800">Categorie</h1>
           </div>
-
-  
 
           
 
-          <!-- Content Row -->
+          
+
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
+            <div>
+                <div class="card shadow mb-4" style="width:1120px;">
 
-              
-              
-            </div>
-            <div class="col-lg-6 mb-4">
+                <!-- Card Header - Accordion -->
+                <a href="#collapseNewCat" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseNewCat" style="width:1100px;">
+                  <h6 class="m-0 font-weight-bold text-primary">Nuova categoria</h6>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse " id="collapseNewCat">
 
-              
-            </div>
+
+                 
+                  <div class="card-body">
+                    <form name="addCucina" method="POST" action="./addCat.php">
+                      <div class="form-group">
+                        <label for="catName">Nome Categoria</label>
+                        <input type="text" class="form-control" id="catName" name="catName"  placeholder="Inserisci Nome Categoria">
+                        
+                      </div>
+      
+                      <button type="submit" class="btn btn-primary" style="margin-top:10px;">Aggiungi</button>
+                    </form>
+                  </div>
+                </div>
+            </div></div>
           </div>
 
-
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-              
-              
+            <div>
+                <div class="card shadow mb-4" style="width:1120px;">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Le mie Categorie</h6>
+                  </div>
+                  <div class="card-body" width="100%">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" style="width:1065px;" cellspacing="0">
+                        <thead>
+                          <tr>
+                            
+                            <th style="width:1120px;">Nome Categoria</th>
+                            
+                            
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                          <?php 
+                            $cucine=mysqli_query($connL, "select * from categorie");
+                            while($cucina=mysqli_fetch_array($cucine))
+                            {
+                              echo "<tr>
+                                    <th>".$cucina[1]."</a></th>";
+                                    
+                            }
+                          ?>
+                        </tbody>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
 
@@ -170,16 +228,6 @@
 
       </div>
       <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SmartMenu 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->

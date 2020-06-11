@@ -67,7 +67,7 @@
       for($i=0;$i<10;$i++)
       {
          echo "<div class=\"card\">
-            <div class=\"card-header catHead\" id=\"headingOne\">
+              <div class=\"card-header catHead\" id=\"headingOne\">
                 <h5 class=\"mb-0\">
                     <button class=\"btn btn-link catHead\" data-toggle=\"collapse\" data-target=\"#collapse".$i."\" aria-expanded=\"true\" aria-controls=\"collapseOne\">
                     "."<b>Category Name</b>"."
@@ -82,9 +82,13 @@
                 </div>
             </div>";
       }
+
+      
         
     ?>
   </div>
+
+  
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

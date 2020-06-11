@@ -1,3 +1,17 @@
+<?php 
+
+session_start();
+  
+if ($_SESSION['login'] != "ok") {
+  header("location: ./login.php");
+}
+
+
+  $connL=mysqli_connect('127.0.0.1','root','','ristotemplate');
+
+  $connR=mysqli_connect('127.0.0.1','root','','ristotemplate');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +23,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Blank</title>
+  <title> - Le mie Cucine</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,8 +43,8 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-       <!-- Sidebar - Brand -->
-       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./dashboard.php">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./dashboard.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
@@ -95,7 +109,6 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
@@ -130,67 +143,62 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"></h1>
+            <h1 class="h3 mb-0 text-gray-800">I miei Menu</h1>
           </div>
 
-  
+          
+          <div class="row">
+          <div class="card shadow mb-4" style="width:1120px;">
+            <div class="card-header py-3" >
+                   <h6 class="m-0 font-weight-bold text-primary"><a href="./menu.php">Aggiugni Menu +</a></h6>
+            </div>
+          </div>   
+        </div>
+          
 
           
 
-          <!-- Content Row -->
           <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-              
-              
-            </div>
-            <div class="col-lg-6 mb-4">
-
-              
+            <div>
+                <div class="card shadow mb-4" style="width:1120px;">
+                  <div class="card-header py-3">
+                  <!--   <h6 class="m-0 font-weight-bold text-primary">Le mie Cucine</h6>-->
+                  </div>
+                  <div class="card-body" width="100%">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" style="width:1065px;" cellspacing="0">
+                        <thead>
+                          <tr>
+                            
+                            <th style="width:300px;">Nome</th>
+                            <th style="width:700px;">Descrizione</th>
+                            
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                          <?php 
+                            $lmenu=mysqli_query($connL, "select * from menus");
+                            while($menu=mysqli_fetch_array($lmenu))
+                            {
+                              echo "<tr>
+                                    <th><a href='./menu.php?id=".$menu[0]."'>".$menu[1]."</a></th>
+                                    <th>".$menu[2]."</th></tr>";
+                            }
+                          ?>
+                        </tbody>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
 
-
-          <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-              
-              
-            </div>
-          </div>
-
-
-
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
+       
       <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SmartMenu 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+      
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -5,7 +5,7 @@
 
       if($_POST)
       {
-          mysqli_query($connL,"insert into cucine(nome) values(\"".$_POST['kitchenName']."\");");
+          mysqli_query($connL,"insert into cucine(nome, descrizione) values(\"".$_POST['kitchenName']."\",\"".$_POST['kitchenDesc']."\");");
           echo $_POST['kitchenName'];
       }
 

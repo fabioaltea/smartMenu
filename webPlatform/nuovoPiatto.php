@@ -1,4 +1,13 @@
 <?php 
+
+session_start();
+  
+if ($_SESSION['login'] != "ok") {
+  header("location: ./login.php");
+}
+
+
+
   $connL=mysqli_connect('127.0.0.1','root','','ristotemplate');
 
   $connR=mysqli_connect('127.0.0.1','root','','ristotemplate');
@@ -15,7 +24,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title> - Dashboard</title>
+  <title> - Nuovo Piatto</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,11 +45,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./dashboard.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
-        <div class="sidebar-brand-text mx-3">Nuovo Piatto<sup></sup></div>
+        <div class="sidebar-brand-text mx-3">Smart Menu<sup></sup></div>
       </a>
 
       <!-- Divider -->
@@ -48,40 +57,73 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+        <a class="nav-link" href="./dashboard.php">
+         
+        <center><span>Dashboard</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="cucine.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Cucine</span></a>
+        <a class="nav-link" href="./creaCucina.php">
+          
+        <center><span>Cucine</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="piatti.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Piatti</span></a>
+        <a class="nav-link" href="./mieiPiatti.php">
+          
+        <center><span>Piatti</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="menu.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Menù</span></a>
+        <a class="nav-link" href="./mieiMenu.php">
+         
+        <center><span>Menù</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="./tavoli.php">
+         
+        <center><span>Tavoli</span></center></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="./categorie.php">
+       
+        <center><span>Categorie</span></center></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Impostazioni</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Modifica Profilo</a>
+            <a class="collapse-item" href="logout.php">Logout</a>
+          </div>
+        </div>
+      </li>
 
      
 
@@ -115,29 +157,34 @@
           <div class="row">
 
             <div class="card shadow mb-4" style="height:700px; width:1120px;">
-                
+                <form method="post" action="./addPiatto.php">
                   <div class="card-body">
                       <div class="col-lg-4 mb-4" style="float:left;">
                         <div class="picPiatto">
+                        <center><input type="file"></center>
                         </div>
                       </div>
 
                       <div class="col-lg-8 mb-4"  style="float:right;">
                         
 
-                        <form method="POST" action="./addPiatto.php">
-                          <div class="form-group">
+                        
+                          <div class="form-group" style="width:65%; float:left;">
                             <label for="nomePiatto">Nome Piatto</label>
-                            <input type="email" class="form-control" id="nomePiatto"  placeholder="Inserisci Nome">
+                            <input type="text" class="form-control" id="nomePiatto" name="nomePiatto" placeholder="Inserisci Nome" >
+                          </div>
+                          <div class="form-group" style="width:30%;float:right; ">
+                            <label for="price">Prezzo</label>
+                            <input type="text" class="form-control" id="price" name="price" placeholder="0.00€">
                           </div>
                           <div class="form-group">
                             <label for="descPiatto">Descrizione Piatto</label>
-                            <textarea class="form-control" id="descPiatto" rows="3"></textarea>
+                            <textarea class="form-control" id="descPiatto" name="descPiatto" rows="3"></textarea>
                           </div>
                           <div class="form-group">
                             <label for="exampleFormControlSelect1">Scegli Cucina</label>
-                              <select class="form-control" id="cucina">
-                                        <option value="*">Tutte</option>
+                              <select class="form-control" id="cucina" name="cucina">
+                                        
                                         <?php 
                                             $cucine=mysqli_query($connL, "select * from cucine");
                                             while($cucina=mysqli_fetch_array($cucine))
@@ -149,8 +196,8 @@
                           </div>
                           <div class="form-group">
                             <label for="exampleFormControlSelect1">Scegli Categoria</label>
-                              <select class="form-control" id="categoria">
-                                        <option value="*">Tutte</option>
+                              <select class="form-control" id="categoria" name="categoria">
+                                        
                                         <?php 
                                             $cucine=mysqli_query($connL, "select * from categorie");
                                             while($cucina=mysqli_fetch_array($cucine))
@@ -162,7 +209,7 @@
                           </div>
                           <div class="form-group">
                             <label for="descPiatto">Lista Ingredienti</label>
-                            <textarea class="form-control" id="ingredienti" rows="3"></textarea>
+                            <textarea class="form-control" id="ingredienti" name="ingredienti" placeholder="ingrediente;ingrediente;ingrediente"rows="3"></textarea>
                           </div>
                           <button type="submit" style="float:right;"class="btn btn-primary">Aggiungi</button>
 

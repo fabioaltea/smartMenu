@@ -1,10 +1,3 @@
-<?php 
-  $connL=mysqli_connect('127.0.0.1','root','','ristotemplate');
-
-  $connR=mysqli_connect('127.0.0.1','root','','ristotemplate');
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,12 +29,12 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+       <!-- Sidebar - Brand -->
+       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./dashboard.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
-        <div class="sidebar-brand-text mx-3">Smart Menù<sup></sup></div>
+        <div class="sidebar-brand-text mx-3">Smart Menu<sup></sup></div>
       </a>
 
       <!-- Divider -->
@@ -49,36 +42,54 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+        <a class="nav-link" href="./dashboard.php">
+         
+        <center><span>Dashboard</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="cucine.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Cucine</span></a>
+        <a class="nav-link" href="./creaCucina.php">
+          
+        <center><span>Cucine</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="piatti.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Piatti</span></a>
+        <a class="nav-link" href="./mieiPiatti.php">
+          
+        <center><span>Piatti</span></center></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="menu.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Menù</span></a>
+        <a class="nav-link" href="./mieiMenu.php">
+         
+        <center><span>Menù</span></center></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="./tavoli.php">
+         
+        <center><span>Tavoli</span></center></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="./categorie.php">
+       
+        <center><span>Categorie</span></center></a>
       </li>
 
       <!-- Divider -->
@@ -103,15 +114,9 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-
-
-
-
-        
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <h1 class="h3 mb-0 text-gray-800"></h1>
           </div>
 
           
@@ -119,102 +124,21 @@
           
 
           <!-- Content Row -->
-          <div class="row">
+          
 
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
+           Benvenuto nella pagina di reindirizzamento dell'elaborato di Fabio Altea
 
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Cucine</h6>
-                </div>
-                <div class="card-body" style="height: 400px;">
-                      
-                        
-
-                  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                      <?php
-                                            $cucine=mysqli_query($connL, "select * from cucine;");
-                                            $c=false;
-                                            while($cucina=mysqli_fetch_array($cucine))
-                                            {
-                                                echo "<div class=\"carousel-item";
-                                                if($c==false){echo"-active";$c=true;}echo "\"><center><div style=\"height:300px;\">".$cucina[1]."</div></center></div>";
-                                            }
-                      ?>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div>
-               </div>
-              </div>
-                    
-                      
-                      
-                   
-
-
-
-
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Piatti</h6>
-                </div>
-                <div class="card-body" style="height: 400px;">
-                  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        
-                      </div>
-                      <div class="carousel-item">
-                        
-                      </div>
-                      <div class="carousel-item">
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              
-
+            <div class="row">
+            <a href="../ristorante/cassa.php">Clicca qui per accedere all'area ristorante</a>
             </div>
-
-
-
-            <div class="col-lg-6 mb-4">
-
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Menu</h6>
-                </div>
-                <div class="card-body" style="height: 400px;">
-                  
-                </div>
-              </div>
-
-              <!-- Approach -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                  <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
-                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
-                </div>
-              </div>
-
+            <div class="row">
+            <a href="../cliente/ordine.php">Clicca qui per accedere all'area cliente</a>
             </div>
-          </div>
+            <div class="row">
+            <a href="./login.php">Clicca qui per accedere alla piattaforma web</a>
+           </div>
+
+
 
         </div>
         <!-- /.container-fluid -->
@@ -222,15 +146,6 @@
       </div>
       <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SmartMenu 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
@@ -282,3 +197,4 @@
 </body>
 
 </html>
+

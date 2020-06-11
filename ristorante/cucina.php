@@ -21,7 +21,6 @@
 
   if($_POST)
   {
-
     $setstate="update portate 
               set stato=".setState()."
               where idPortata= (select idPortata
@@ -31,11 +30,7 @@
                                 and portate.idOrdine=".$_POST['idOrdine']."
                                 and ordini.data=(SELECT max(data) 
                                                   from ordini));";
-
-  
     mysqli_query($conn,$setstate);
-
-    
   }
 
   if($_POST)
@@ -136,6 +131,15 @@
                             and ordini.idTavolo=tavoli.idTavolo 
                             and tavoli.idTavolo=".$row[0]." 
                             and ordini.data=(SELECT max(data) from ordini);";
+
+                            $q2="select piatti.nomePiatto, portate.quantita, portate.stato, portate.idPortata, ordini.idOrdine
+                            from portate, ordini, tavoli, piatti 
+                            WHERE portate.idPiatto=piatti.idPiatto 
+                            and ordini.idOrdine=portate.idOrdine 
+                            and ordini.idTavolo=tavoli.idTavolo 
+                            and tavoli.idTavolo=".$row[0]." and ordini.stao!=0;
+                            and ordini.data=(SELECT max(data) from ordini);";
+                            
 
 
             
